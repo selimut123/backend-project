@@ -8,6 +8,7 @@ const mongoose = require("mongoose");
 const authRoutes = require("./routes/auth-routes");
 const blogRoutes = require("./routes/blog-routes");
 const HttpError = require("./models/http-error");
+const CONFIG = require("./config.json");
 
 const app = express();
 
@@ -49,7 +50,7 @@ app.use((error, req, res, next) => {
 
 mongoose
   .connect(
-    "mongodb+srv://xtrackx4:MongoDB123@cluster1.jdqpu.mongodb.net/myFirstDatabase?retryWrites=true&w=majority"
+    `mongodb+srv://${CONFIG.mongo.username}:${CONFIG.mongo.password}@cluster1.jdqpu.mongodb.net/myFirstDatabase?retryWrites=true&w=majority`
   )
   .then(() => {
     app.listen(5000);
